@@ -55,6 +55,28 @@ In case you are installing `zipline-reloaded` alongside other packages and encou
 
 See the [installation](https://zipline.ml4trading.io/install.html) section of the docs for more detailed instructions and the corresponding [conda-forge site](https://github.com/conda-forge/zipline-reloaded-feedstock).
 
+### 从源码安装
+
+先使用conda-forge中的3.0.3版本（ml4t中的太旧了）：
+```
+conda create -n zipline303 python=3.10
+conda activate zipline303
+conda install -c conda-forge zipline-reloaded
+```
+之后通过命令行zipline即可运行
+基于zipline 3.0.3处理依赖关系后，再尝试从代码安装zipline-reloaded
+```
+conda remove zipline-reloaded --force # 仅删除zipline-reloaded，不删除对应的依赖
+conda install Cython
+python setup.py install
+```
+安装是成功了，但是有个sqlite的报错，不清楚具体用起来有没有问题。
+从源代码调试安装（源代码链接到对应库）：
+```
+# 注意通过Python或者pip安装的库，无法通过conda处理
+pip uninstall zipline-reloaded
+pip install -e .  # -e参数表示可编辑模式
+```
 ## Quickstart
 
 See our [getting started tutorial](https://zipline.ml4trading.io/beginner-tutorial).
